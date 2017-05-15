@@ -1,66 +1,34 @@
->## A Big Update Is Coming
-
->React Hot Loader 3 is [on the horizon](https://github.com/gaearon/react-hot-loader/pull/240), and you can try it today ([boilerplate branch](https://github.com/gaearon/react-hot-boilerplate/pull/61), [upgrade example](https://github.com/gaearon/redux-devtools/commit/64f58b7010a1b2a71ad16716eb37ac1031f93915)). It fixes some [long-standing issues](https://twitter.com/dan_abramov/status/722040946075045888) with both React Hot Loader and React Transform, and is intended as a replacement for both. The docs are not there yet, but they will be added before the final release. For now, [this commit](https://github.com/gaearon/redux-devtools/commit/64f58b7010a1b2a71ad16716eb37ac1031f93915) is a good reference.
-
-
-React Hot Boilerplate
+Story Time
 =====================
 
-The minimal dev environment to enable live-editing React components.
+## Outline
 
-### ⚠️⚠️⚠️ This Is Experimental and Incomplete! ⚠️⚠️⚠️
+The application allows the user to choose an emotion, a genre and input text. Using a scale (on the right) it will determine a story is "happy", "sad", or "unknown". It will also tell the user if they have successfully written the emotion they set out to write. 
 
-This is **not a good starting point for people learning React.**  
-It’s experimental and completely lacks any production features.
+Once they have written a story, the user will have the option to save it for later (until the page is refreshed).
 
-**Do not use this as an actual project boilerplate!**  
-If you’re just getting started with React, **use [Create React App](https://github.com/facebookincubator/create-react-app) instead.**
+## Design Decisions
+I used React and Redux to create the application in order to seperate the data contained in the application with the views.
+Then used actions to communicate from react views back to reducers. 
 
-### Usage
+* **Index**
+  * App (Container)
+    * Save Story 
+    * Story Area (Container)
+      * Input Text Area
+      * Classifier
+        * Classifier Image
+        * Classifier Text
+    * Story Type
+      * Emotion Dropdown
+      * Genre Dropdown (Container)
+  * Navbar
+  * Saved Stories List (Container)
+  
+Components were created to seperate functionality within the application and I decided to nest the Input Text Area and Classifier underneath the component Story Area. This meant I was able to pass values between them easily and update the Classifier as the user types in the Input Text Area. 
 
-```
-git clone https://github.com/gaearon/react-hot-boilerplate.git
-cd react-hot-boilerplate/
-npm install
-npm start
-open http://localhost:3000
-```
+React Components were promoted to Containers when necessary to enable the view to communcate with the data in the reducers. 
+I have tried to keep these to a minimum and only updated the parent view when multiple children require the data from a reducer. 
 
-Now edit `src/App.js`.  
-Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
+I decided to use the framework Bootstrap as it is cross-compatible to help style the application and allowed me to create responsive layouts easily. 
 
-### Linting
-
-This boilerplate project includes React-friendly ESLint configuration.
-
-```
-npm run lint
-```
-
-### Using `0.0.0.0` as Host
-
-You may want to change the host in `server.js` and `webpack.config.js` from `localhost` to `0.0.0.0` to allow access from same WiFi network. This is not enabled by default because it is reported to cause problems on Windows. This may also be useful if you're using a VM.
-
-### Missing Features
-
-This boilerplate is purposefully simple to show the minimal configuration for React Hot Loader. For a real project, you'll want to add a separate config for production with hot reloading disabled and minification enabled. You'll also want to add a router, styles and maybe combine dev server with an existing server. This is out of scope of this boilerplate, but you may want to look into [other starter kits](https://github.com/gaearon/react-hot-loader/blob/master/docs/README.md#starter-kits).
-
-### WebStorm
-
-Because the WebStorm IDE uses "safe writes" by default, Webpack's file-watcher won't recognize file changes, so hot-loading won't work. To fix this, disable "safe write" in WebStorm.
-
-### Dependencies
-
-* React
-* Webpack
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
-* [babel-loader](https://github.com/babel/babel-loader)
-* [react-hot-loader](https://github.com/gaearon/react-hot-loader)
-
-### Resources
-
-* [Demo video](http://vimeo.com/100010922)
-* [react-hot-loader on Github](https://github.com/gaearon/react-hot-loader)
-* [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
-* [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
-* Ping [@dan_abramov](https://twitter.com/dan_abramov) on Twitter or #reactjs (`chat.freenode.net/reactjs`) on IRC
